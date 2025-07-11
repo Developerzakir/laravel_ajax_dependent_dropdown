@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+
+Route::controller(LocationController::class)->group(function () {
+    Route::get('location',  'index');
+    Route::post('get-states',  'getStates')->name('getStates');
+    Route::post('get-cities',  'getCities')->name('getCities');
+    Route::post('save-location', 'storeLocation')->name('saveLocation');
+
 });
